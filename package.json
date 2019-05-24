@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "watch": {
+    "start": "index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "npm-watch"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +18,7 @@
     "koa-ejs": "^4.2.0",
     "koa-sass": "^2.0.0",
     "koa-static": "^5.0.0",
-    "koa-trie-router": "^2.1.6"
+    "koa-trie-router": "^2.1.6",
+    "npm-watch": "^0.6.0"
   }
 }

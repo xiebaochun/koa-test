@@ -23,6 +23,7 @@ render(app, {
 	debug: true
 });
 
+
 app.use(router.middleware())
 
 // app.use(async ctx => {

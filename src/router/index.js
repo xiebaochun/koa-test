@@ -12,7 +12,7 @@ router
     return next()
   }).
   get('/', async (ctx, next) => {
-  	await ctx.render('pages/index', {user: 'username'})
+  	//await ctx.render('pages/index', {user: 'username'})
   	//return next()
   })
   .put('/foo', function (ctx) {
