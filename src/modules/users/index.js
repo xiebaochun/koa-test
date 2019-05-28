@@ -1,12 +1,10 @@
-import Router from 'koa-trie-router'
+const Router = require('koa-trie-router')
 
-
-import fetchUser from './routers/fetchUser'
+const fetchUser = require('./routers/fetchUser')
 
 const router = new Router()
 
-export default () => {
-	router.get('/fetchUser', fetchUser())
-
-	export router.middleware()
+module.exports = () => {
+	router.get(fetchUser())
+	return router.middleware()
 }

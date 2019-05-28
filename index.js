@@ -23,9 +23,8 @@ render(app, {
 	debug: true
 });
 
-
-app.use(router.middleware())
-
+//app.use(router.middleware())
+router(app)
 // app.use(async ctx => {
 //   await ctx.render('index', {user: 'username'});
 // });
