@@ -9,15 +9,14 @@ module.exports = () => {
 	router.get('/:id', async (ctx, next) => {
 		let result
 		try{
-			result = await controller(ctx)
+			await controller(ctx, next)
 		} catch (err){
 			ctx.throw(500, err)
 		}
-		console.log('??????')
-		console.log(result)
-		ctx.type = 'json'
-		ctx.body = result
-
+		//console.log('??????')
+		//console.log(result)
+		// ctx.type = 'json'
+		// ctx.body = result
 	})
 
 	return router.middleware()

@@ -1,53 +1,30 @@
 const mongoose = require('mongoose');
+const userModel = require('../models/user');
 
-
-module.exports = (ctx, next) => {
-	var name = ctx.params
-	let connectResult = connectDb()
+module.exports = async (ctx, next) => {
+	var userId = ctx.params.id
+	connectDb()
 	//findUser(connectResult)
-	saveUser(connectResult)
-	//console.log(connectResult)
-	let result = {status: 200, data: {msg: 'Fetch success!!', name: name}}
 
-	return result
+	let userData = await userModel.findUserById(userId)
+	//let result = await connectDb()
+	
+	console.log(userData)
+	// findUserById(userId, (userData) => {
+	let result = {status: 200, data: {msg: 'Fetch success!!', user: userData}}
+	ctx.type = 'json'
+	ctx.body = result
+	// 	//ctx.render('pages/index', {user: 'username'})
+	// 	console.log(result, 'from controller')
+	// 	console.log(ctx, 'from controller')
+	// })
+	
 }
 
 const connectDb = () => {
-	const conn = mongoose.createConnection('mongodb://localhost/koaTest', {useNewUrlParser: true});
-
-
-	return conn;
+	const conn = mongoose.connect('mongodb://localhost/koaTest', {useNewUrlParser: true});
 }
 
-
-const createSchema = () => {
-	var Schema = mongoose.Schema;
-
-	var User = new Schema({
-	  name: String,
-	  age: Number
-	});
-
-	return User
-}
-
-const createModel = (conn) => {
-	var userModel = conn.model('users', createSchema() );
-
-	return userModel;
-}
-
-const findUser = (conn) => {
-	var userModel = createModel(conn);
-	console.log('>>>>>>>>')
-	// userModel.find({}, (err, result) => {
-
-	// 	console.log(result, 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-	// })
-	userModel.create({name: 'xiaoming', age: 16}, (err, result) => {
-		console.log(result, 'save successed!')
-	})
-}
 
 const saveUser = (conn) => {
 	var UserModel = createModel(conn);

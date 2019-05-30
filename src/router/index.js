@@ -7,15 +7,7 @@ let router = new Router();
 
 module.exports = (app) => {
   router
-  .use(function(ctx, next) {
-    console.log('* requests')
-    return next()
-  })
-  .use(mount('/user', user()))
-  .get(function(ctx, next) {
-    console.log('GET requests')
-    return next()
-  }).
+  .use(mount('/user', user())).
   get('/', async (ctx, next) => {
     await ctx.render('pages/index', {user: 'username'})
     //return next()
