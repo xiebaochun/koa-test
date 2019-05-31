@@ -4,8 +4,12 @@ const path = require('path');
 const serve = require('koa-static');
 const router = require('./src/router/index.js');
 var sass = require('koa-sass');
+const session = require('./src/middleware/session')
+
 
 const app = new Koa();
+
+app.use(session)
 
 app.use(sass({
   src:  __dirname + '/src/assets/scss',
